@@ -1,28 +1,21 @@
 import type { CreateExpressContextOptions } from "@trpc/server/adapters/express";
-import type { User } from "../../drizzle/schema";
-import { sdk } from "./sdk";
 
+// تعريف نوع السياق (Context Type) بدون الحاجة إلى User أو Drizzle
 export type TrpcContext = {
   req: CreateExpressContextOptions["req"];
   res: CreateExpressContextOptions["res"];
-  user: User | null;
+  // يمكننا إزالة 'user' لأنه لم يعد هناك مصادقة
 };
 
+// دالة إنشاء السياق (Context)
 export async function createContext(
   opts: CreateExpressContextOptions
 ): Promise<TrpcContext> {
-  let user: User | null = null;
-
-  try {
-    user = await sdk.authenticateRequest(opts.req);
-  } catch (error) {
-    // Authentication is optional for public procedures.
-    user = null;
-  }
-
+  // لا يوجد مصادقة، لذا لا نحتاج إلى كود sdk.authenticateRequest
+  
   return {
     req: opts.req,
     res: opts.res,
-    user,
+    // user: null, // لم يعد ضرورياً
   };
 }
