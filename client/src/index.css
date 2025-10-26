@@ -370,18 +370,3 @@
     @apply bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 bg-clip-text text-transparent;
   }
 }
-
-  .text-gradient-hover {
-    @apply bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 bg-clip-text text-transparent hover:from-purple-300 hover:via-pink-400 hover:to-red-400 transition-all duration-300;
-  }
-
-  /* Ensure text remains visible on gray backgrounds */
-  .text-on-gray {
-    @apply text-foreground font-semibold transition-colors duration-300;
-  }
-
-  .text-on-gray:hover,
-  .text-on-gray:active {
-    @apply text-accent;
-  }
-

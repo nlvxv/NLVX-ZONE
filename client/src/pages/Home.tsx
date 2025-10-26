@@ -1,6 +1,6 @@
 import { useEffect, useState, useMemo } from "react";
 import { Button } from "@/components/ui/button";
-import { useAuth } from "@/_core/hooks/useAuth";
+// import { useAuth } from "@/_core/hooks/useAuth"; // Removed authentication
 import { APP_LOGO, APP_TITLE } from "@/const";
 import { Menu, X, Github, Instagram, Mail, ExternalLink, Star, GitFork, Loader2, Twitter } from "lucide-react";
 import { Link } from "wouter";
@@ -22,7 +22,7 @@ const IconLoader = () => <Loader2 size={18} className="animate-spin" />;
 const IconGithub32 = () => <Github size={32} />;
 
 export default function Home() {
-  const { user } = useAuth();
+// const { user } = useAuth(); // Removed authentication
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [projects, setProjects] = useState<any[]>([]);
@@ -274,17 +274,14 @@ export default function Home() {
               {projects.map((project, idx) => (
                 <div
                   key={project.id}
-                  className="glass p-6 rounded-xl hover-lift group animate-fade-in-up transition-all duration-300"
+                  className="glass p-6 rounded-xl hover-lift group animate-fade-in-up"
                   style={{ animationDelay: `${idx * 0.1}s` }}
                 >
                   <div className="flex items-start justify-between mb-4">
-                    <h3 className="text-xl font-bold group-hover:text-accent transition-colors flex-1 break-words">{project.name}</h3>
-                    <Github size={20} className="text-muted-foreground flex-shrink-0 ml-2" />
+                    <h3 className="text-xl font-bold group-hover:text-accent transition-colors flex-1">{project.name}</h3>
+                    <Github size={20} className="text-muted-foreground" />
                   </div>
-                  <p className="text-muted-foreground mb-4 line-clamp-3 text-sm leading-relaxed">{project.description || "A GitHub repository project"}</p>
-                  <div className="text-xs text-muted-foreground mb-4 opacity-75">
-                    {project.updated_at && new Date(project.updated_at).toLocaleDateString()}
-                  </div>
+                  <p className="text-muted-foreground mb-6 line-clamp-2">{project.description || "No description"}</p>
                   <div className="flex items-center justify-between mb-6">
                     <div className="flex items-center gap-4 text-sm text-muted-foreground">
                       <div className="flex items-center gap-1">

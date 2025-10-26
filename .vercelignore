@@ -1,0 +1,11 @@
+# Ignore development and local files
+node_modules
+dist
+.env
+.env.example
+.git
+.gitkeep
+patches
+pnpm-lock.yaml
+todo.md
+
